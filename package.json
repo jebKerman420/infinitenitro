@@ -4,7 +4,7 @@
 	"description": "**The most efficient nitro generator and checker you'll ever find.**  \r Made with ❤ by **Tenclea**, modified by Unity-coder22",
 	"main": "app.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "node app.js"
 	},
 	"author": "Tenclea",
 	"license": "ISC",
@@ -28,7 +28,6 @@
 	"homepage": "https://github.com/Tenclea/YANG#readme",
 	"pkg": {
 		"scripts": [
-			"start": "node app.js"
 			"app.js",
 			"utils/*.js",
 			"node_modules/vm2/lib/setup-sandbox.js"
