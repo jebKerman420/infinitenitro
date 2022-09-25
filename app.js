@@ -8,10 +8,9 @@ const
 	ProxyAgent = require('proxy-agent'),
 	yaml = require('js-yaml');
 	var http = require("http");
-	var server = http.createServer(function(req,res){
-	res.write("Discord thing is loading");
-	res.end();
-	});
+	var port_number = server.listen(process.env.PORT || 3000);
+	app.listen(port_number);
+	console.log("Discord thing is loading");
 	server.listen(8080);
 
 const stats = { downloaded_codes: [], threads: 0, startTime: 0, used_codes: [], version: require('./package.json').version, working: 0 };
@@ -116,8 +115,7 @@ process.on('exit', () => { logger.info('Closing YANG... If you liked this projec
 
 				if (body.subscription_plan) {
 					logger.info(`Found a valid gift code : https://discord.gift/${code} !`);
-					res.write("`Found a valid gift code : https://discord.gift/${code} !`");
-					res.end();
+					console.log("Found a valid gift code : https://discord.gift/"+${code});
 
 					// Try to redeem the code if possible
 					redeemNitro(code, config);
@@ -148,8 +146,7 @@ process.on('exit', () => { logger.info('Closing YANG... If you liked this projec
 				}
 				else if (body.message === 'Unknown Gift Code') {
 					logger.warn(`${code} was an invalid gift code.              `);
-					res.write("`${code} was an invalid gift code.              `");
-					res.end();
+					console.warn("invalid");
 				}
 				else { console.log(body?.message + ' - please report this on GitHub.'); }
 				logStats();
