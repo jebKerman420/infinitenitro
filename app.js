@@ -9,10 +9,22 @@ const
 	ProxyAgent = require('proxy-agent'),
 	yaml = require('js-yaml');
 
-var app = require('http');
-app.createServer().listen(8080);
+//var app = require('http');
+//app.createServer().listen(8080);
 const stats = { downloaded_codes: [], threads: 0, startTime: 0, used_codes: [], version: require('./package.json').version, working: 0 };
 console.clear();
+var express = require('express');
+var app     = express();
+
+app.set('port', (process.env.PORT || 5000));
+
+//For avoidong Heroku $PORT error
+app.get('/', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
 console.log(chalk.magenta(`
 ### ##     ####    ## ##    ## ##    ## ##   ### ##   ### ##            #### ##  ###  ##    ####   ###  ##   ## ##   
  ##  ##     ##    ##   ##  ##   ##  ##   ##   ##  ##   ##  ##           # ## ##   ##  ##     ##      ## ##  ##   ##  
