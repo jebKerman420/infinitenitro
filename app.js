@@ -64,19 +64,19 @@ process.on('exit', () => { logger.info('Closing YANG... If you liked this projec
 (async () => {
 	checkForUpdates();
 	if (config.proxies.enable_scrapper) {
-		logger.info('Downloading fresh proxies...');
+		console.log('Downloading fresh proxies...');
 
 		const downloaded = await require('./utils/proxy-scrapper')();
 		proxies = [...new Set(proxies.concat(downloaded))];
 
-		logger.info(`Downloaded ${chalk.yellow(downloaded.length)} proxies.`);
+		console.log(`Downloaded ${chalk.yellow(downloaded.length)} proxies.`);
 	}
 	if (!proxies[0]) { logger.error('Could not find any valid proxies. Please make sure to add some in the \'required\' folder.'); process.exit(1); }
 
 	if (config.proxies.enable_checker) proxies = await require('./utils/proxy-checker')(proxies, config.threads);
 	if (!proxies[0]) { logger.error('All of your proxies were filtered out by the proxy checker. Please add some fresh ones in the \'required\' folder.'); process.exit(1); }
 
-	logger.info(`Loaded ${chalk.yellow(proxies.length)} proxies.              `);
+	console.log(`Loaded ${chalk.yellow(proxies.length)} proxies.              `);
 
 	const generateCode = () => {
 		const code = Array.apply(0, Array(16)).map(() => {
@@ -106,11 +106,11 @@ process.on('exit', () => { logger.info('Closing YANG... If you liked this projec
 					let timeout = 0;
 					if (retries < 100) {
 						retries++; timeout = 2500;
-						logger.debug(`Connection to ${chalk.grey(proxy)} failed : ${chalk.red(res?.statusCode || 'INVALID RESPONSE')}.`);
+						console.log(`Connection to ${chalk.grey(proxy)} failed : ${chalk.red(res?.statusCode || 'INVALID RESPONSE')}.`);
 					}
 					else {
 						// proxies.push(proxy); // don't remove proxy
-						logger.debug(`Removed ${chalk.gray(proxy)} : ${chalk.red(res?.statusCode || 'INVALID RESPONSE')}`);
+						console.log(`Removed ${chalk.gray(proxy)} : ${chalk.red(res?.statusCode || 'INVALID RESPONSE')}`);
 						proxy = proxies.shift();
 					}
 
@@ -123,7 +123,7 @@ process.on('exit', () => { logger.info('Closing YANG... If you liked this projec
 				if (!working_proxies.includes(proxy)) working_proxies.push(proxy);
 
 				if (body.subscription_plan) {
-					logger.info(`Found a valid gift code : https://discord.gift/${code} !`);
+					console.log(`Found a valid gift code : https://discord.gift/${code} !`);
 
 					// Try to redeem the code if possible
 					redeemNitro(code, config);
@@ -145,15 +145,15 @@ process.on('exit', () => { logger.info('Closing YANG... If you liked this projec
 					const timeout = body.retry_after;
 					if (timeout != 600000) {
 						proxies.push(proxy);
-						logger.warn(`${chalk.gray(proxy)} is being rate limited (${(timeout).toFixed(2)}s), ${proxies[0] === proxy ? 'waiting' : 'skipping proxy'}...`);
+						console.log(`${chalk.gray(proxy)} is being rate limited (${(timeout).toFixed(2)}s), ${proxies[0] === proxy ? 'waiting' : 'skipping proxy'}...`);
 					}
 					else {
-						logger.warn(`${chalk.gray(proxy)} was most likely banned by Discord. Removing proxy...`);
+						console.log(`${chalk.gray(proxy)} was most likely banned by Discord. Removing proxy...`);
 					}
 					p = proxies.shift();
 				}
 				else if (body.message === 'Unknown Gift Code') {
-					logger.warn(`${code} was an invalid gift code.              `);
+					console.log(`${code} was an invalid gift code.              `);
 				}
 				else { console.log(body?.message + ' - please report this on GitHub.'); }
 				logStats();
