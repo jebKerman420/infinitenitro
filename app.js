@@ -9,10 +9,8 @@ const
 	ProxyAgent = require('proxy-agent'),
 	yaml = require('js-yaml');
 
-var http = require("http");
 var app = require('http');
 app.createServer().listen(8080);
-app.listen(PORT, () => {});
 const stats = { downloaded_codes: [], threads: 0, startTime: 0, used_codes: [], version: require('./package.json').version, working: 0 };
 console.clear();
 console.log(chalk.magenta(`
