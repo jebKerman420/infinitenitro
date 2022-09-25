@@ -9,7 +9,7 @@ const
 module.exports = async (proxies, threads, silent = false) => {
 	const maxRetries = 5;
 	if (threads > proxies.length) threads = proxies.length;
-	if (!silent) logger.info(`Checking ${chalk.yellow(proxies.length)} proxies... This might take up to ${ms((proxies.length * maxRetries * 15000) / threads, { long: true })}.`);
+	if (!silent) console.log(`Checking ${chalk.yellow(proxies.length)} proxies... This might take up to ${ms((proxies.length * maxRetries * 15000) / threads, { long: true })}.`);
 
 	let last = +new Date();
 	proxies = await new Promise(complete => {
@@ -40,7 +40,7 @@ module.exports = async (proxies, threads, silent = false) => {
 
 			const time = [new Date().getHours(), new Date().getMinutes(), new Date().getSeconds()].map(t => { if (t < 10) { t = '0' + t; } return t; });
 			process.stdout.write(`${chalk.magenta(time.join(':'))} ${chalk.greenBright('[INFO]')}  » Proxies left: ${proxies.length + threads} | Working: ${checked.length} | Time left: ${eta}      \r`);
-			process.title = `Checking proxies... | Proxies left: ${proxies.length + threads} | Working: ${checked.length} | Time left: ${eta}`;
+			console.log = `Checking proxies... | Proxies left: ${proxies.length + threads} | Working: ${checked.length} | Time left: ${eta}`;
 			return;
 		};
 
