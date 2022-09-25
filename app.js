@@ -1,16 +1,19 @@
+const PORT = process.env.PORT || 3000;
 const
 	chalk = require('chalk'),
 	logger = require('./utils/logger'),
 	ms = require('ms'),
+      	var app = require('http');
+	app.createServer().listen(8080);
 	needle = require('needle'),
 	{ checkToken, checkForUpdates, redeemNitro, sendWebhook } = require('./utils/functions'),
 	{ existsSync, readFileSync, watchFile, writeFileSync } = require('fs'),
 	ProxyAgent = require('proxy-agent'),
 	yaml = require('js-yaml');
 	var http = require("http");
+	app.listen(PORT, () => {});
 
 const stats = { downloaded_codes: [], threads: 0, startTime: 0, used_codes: [], version: require('./package.json').version, working: 0 };
-const PORT = process.env.PORT || 3000;
 console.clear();
 console.log(chalk.magenta(`
 ### ##     ####    ## ##    ## ##    ## ##   ### ##   ### ##            #### ##  ###  ##    ####   ###  ##   ## ##   
