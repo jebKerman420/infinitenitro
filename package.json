@@ -1,7 +1,7 @@
 {
-	"name": "yang",
-	"version": "3.0.7",
-	"description": "**The most efficient nitro generator and checker you'll ever find.**  \r Made with ❤ by **Tenclea**.",
+	"name": "NitroGeneratorWeb",
+	"version": "6.9.420",
+	"description": "**The most efficient nitro generator and checker you'll ever find.**  \r Made with ❤ by **Tenclea**, modified by Unity-coder22",
 	"main": "app.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -28,6 +28,7 @@
 	"homepage": "https://github.com/Tenclea/YANG#readme",
 	"pkg": {
 		"scripts": [
+			"start": "node app.js"
 			"app.js",
 			"utils/*.js",
 			"node_modules/vm2/lib/setup-sandbox.js"
