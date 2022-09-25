@@ -22,12 +22,12 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Tenclea/YANG.git"
+		"url": "git+https://github.com/Unity-coder22/infinitenitro.git"
 	},
 	"bugs": {
-		"url": "https://github.com/Tenclea/YANG/issues"
+		"url": "https://github.com/Unity-coder22/infinitenitro/issues"
 	},
-	"homepage": "https://github.com/Tenclea/YANG#readme",
+	"homepage": "https://github.com/Unity-coder22/infinitenitro#readme",
 	"pkg": {
 		"scripts": [
 			"app.js",
