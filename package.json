@@ -4,7 +4,7 @@
 	"description": "**The most efficient nitro generator and checker you'll ever find.**  \r Made with ❤ by **Tenclea**, modified by Unity-coder22",
 	"main": "app.js",
 	"scripts": {
-		"start": "start.bat"
+		"start": "node app.json"
 	},
 	"author": "Tenclea",
 	"license": "ISC",
