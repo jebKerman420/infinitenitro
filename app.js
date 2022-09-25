@@ -8,7 +8,6 @@ const
 	ProxyAgent = require('proxy-agent'),
 	yaml = require('js-yaml');
 	var http = require("http");
-	server.listen(8080);
 
 const stats = { downloaded_codes: [], threads: 0, startTime: 0, used_codes: [], version: require('./package.json').version, working: 0 };
 
