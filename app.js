@@ -10,7 +10,10 @@ const
 	var http = require("http");
 
 const stats = { downloaded_codes: [], threads: 0, startTime: 0, used_codes: [], version: require('./package.json').version, working: 0 };
-
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
 console.clear();
 console.log(chalk.magenta(`
 ### ##     ####    ## ##    ## ##    ## ##   ### ##   ### ##            #### ##  ###  ##    ####   ###  ##   ## ##   
